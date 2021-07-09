@@ -34,10 +34,10 @@
 Arduboy2 arduboy;
 BeepPin1 beep;
 
-int gameState = 0;
 bool gamePaused = false;
 int gameScore = 0;
-int gameLevel = 1;
+byte gameState = 0;
+byte gameLevel = 1;
 byte maxTileX = 0;
 byte maxTileY = 0;
 byte minTileX = 1;
@@ -46,13 +46,13 @@ byte minTileY = 1;
 byte currentSpeed;
 byte snakePartsX[MAX_SNAKE_LENGTH];
 byte snakePartsY[MAX_SNAKE_LENGTH];
-int snakeDirection = 3;
-int snakeLength = 0;
+byte snakeDirection = 3;
+byte snakeLength = 0;
 bool snakeIsDead = false;
 bool directionAlreadyChanged = false;
 
-int foodX = 0;
-int foodY = 0;
+byte foodX = 0;
+byte foodY = 0;
 byte foodScore = 1;
 
 const uint8_t PROGMEM titleImage[] = {
@@ -148,6 +148,7 @@ void loop() {
 
                         for (byte i = 1; i <= foodScore; i++) {
                             gameScore = gameScore + 1;
+
                             if (snakeLength < MAX_SNAKE_LENGTH) {
                                 snakeLength++;
                                 snakePartsX[snakeLength - 1] = snakePartsX[snakeLength - 2];
@@ -172,7 +173,7 @@ void loop() {
 
                         arduboy.setRGBled(158, 19, 126);
                         beep.tone(beep.freq(1500), 1);
-                        delay(100);
+                        delay(75);
                         arduboy.setRGBled(0, 0, 0);
 
                         addFood();
@@ -378,7 +379,7 @@ void addFood() {
 }
 
 bool isSnakeBitingItself() {
-    for (int i = 1; i < snakeLength; i++) {
+    for (byte i = 1; i < snakeLength; i++) {
         if (snakePartsX[i] == snakePartsX[0] && snakePartsY[i] == snakePartsY[0]) {
             return true;
         }
