@@ -24,9 +24,17 @@
 //#define ROWS 10
 //#define CELLSIZE 6
 
-#define COLS 25
-#define ROWS 12
-#define CELLSIZE 5
+//#define COLS 25
+//#define ROWS 12
+//#define CELLSIZE 5
+
+#define COLS 32
+#define ROWS 16
+#define CELLSIZE 4
+
+//#define COLS 42
+//#define ROWS 21
+//#define CELLSIZE 3
 
 Arduboy2 arduboy;
 bool drawMode = true;
